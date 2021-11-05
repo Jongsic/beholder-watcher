@@ -1,0 +1,57 @@
+{
+    "name": "@ozys/beholder-watcher",
+    "version": "1.5.0",
+    "license": "UNLICENSED",
+    "author": {
+        "name": "Seongjae Hwang"
+    },
+    "bin": {
+        "beholder-watcher": "bin/cli.js"
+    },
+    "scripts": {
+        "format": "yarn lint",
+        "lint": "standard",
+        "lint:fix": "standard --fix",
+        "sort-pack": "sort-package-json",
+        "start": "node ./index.js"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "yarn lint-staged"
+        }
+    },
+    "lint-staged": {
+        "**/*.{js,jsx}": [
+            "yarn lint:fix",
+            "git add"
+        ],
+        "./package.json": [
+            "yarn sort-pack",
+            "git add"
+        ]
+    },
+    "dependencies": {
+        "pm2": "^4.2.0",
+        "psaux": "^0.4.0",
+        "request": "^2.34",
+        "request-promise-native": "^1.0.8",
+        "yargs": "^15.0.2"
+    },
+    "devDependencies": {
+        "husky": "^3.1.0",
+        "lint-staged": "^9.4.3",
+        "sort-package-json": "^1.23.1",
+        "standard": "^14.3.1"
+    },
+    "engines": {
+        "node": ">=12.13.0"
+    },
+    "os": [
+        "darwin",
+        "linux",
+        "win32"
+    ],
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    }
+}
