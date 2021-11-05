@@ -109,8 +109,8 @@ const pm2Watcher = async ({ http, responseField, serviceId, rpc, makeSupportWall
   }), { cpuUsage: 0, memoryUsage: 0 })
   report.cpuUsage = round(report.cpuUsage)
   report.memoryUsage = round(report.memoryUsage)
-  if (skipWatch.cpuUsage) delete report.cpuUsage
-  if (skipWatch.memoryUsage) delete report.memoryUsage
+  if (skipWatch && skipWatch.cpuUsage) report.cpuUsage = 0
+  if (skipWatch && skipWatch.memoryUsage) report.memoryUsage = 0
 
   if (http != null) {
     Object.assign(report, await httpCollector({ http: http, responseField: responseField }))
@@ -164,8 +164,8 @@ const commonWatcher = async ({ http, responseField, serviceId, rpc, instanceType
   report.cpuUsage = round(report.cpuUsage)
   report.memoryUsage = round(report.memoryUsage)
 
-  if (skipWatch.cpuUsage) delete report.cpuUsage
-  if (skipWatch.memoryUsage) delete report.memoryUsage
+  if (skipWatch && skipWatch.cpuUsage) report.cpuUsage = 0
+  if (skipWatch && skipWatch.memoryUsage) report.memoryUsage = 0
 
   if (http != null) {
     Object.assign(report, await httpCollector({ http: http, responseField: responseField }))
