@@ -53,6 +53,8 @@ const rpcCollector = async ({ rpc }) => {
       } else {
         result.blockNumber[rpc.chain] = [parseInt(response)]
       }
+    } else if (rpc.chain === "icon") {
+      result.blockNumber[rpc.chain] = [response.height];
     }
   }
   return result
